@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Safety Gap — DUX Bio-Resilience UX Scroll Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================
+     DUX — "The Safety Gap" Scroll Story
+     EDITABLE ZONES are marked with:
+     === EDIT: [what to change] ===
+     ============================================ */
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Instrument Sans', sans-serif;
+
+    /* === EDIT: page background color === */
+    background: #f5f1ea;
+
+    /* === EDIT: page text color === */
+    color: #1a1a1a;
+
+    overflow-x: hidden;
+  }
+
+  /* ============================================================
+     HERO SECTION
+     ============================================================ */
+  .hero {
+    min-height: 100vh;
+
+    /* === EDIT: hero background color === */
+    background: #1a1a1a;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    top: -30px;
+    left: -10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 220px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+    white-space: nowrap;
+    letter-spacing: -6px;
+    /* === EDIT: change this text for a different watermark === */
+  }
+
+  .hero-kicker {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+
+    /* === EDIT: kicker accent color === */
+    color: #c8f55a;
+
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+
+    /* === EDIT: hero headline size === */
+    font-size: 64px;
+
+    line-height: 1.1;
+    color: #f5f1ea;
+    max-width: 700px;
+    margin-bottom: 24px;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    /* === EDIT: headline accent color === */
+    color: #c8f55a;
+  }
+
+  .hero-byline {
+    font-size: 12px;
+    color: #555;
+    letter-spacing: 0.05em;
+    margin-bottom: 60px;
+  }
+
+  .hero-scroll-hint {
+    font-size: 11px;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .scroll-arrow {
+    display: inline-block;
+    animation: bounceDown 1.6s ease-in-out infinite;
+    font-size: 18px;
+  }
+
+  @keyframes bounceDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* ============================================================
+     CONTENT SECTIONS
+     ============================================================ */
+  .section {
+    padding: 80px 60px;
+    border-bottom: 0.5px solid #ddd9d0;
+    max-width: 860px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* === EDIT: section number style === */
+  .section-number {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+
+    /* === EDIT: section heading size === */
+    font-size: 42px;
+
+    line-height: 1.15;
+    margin-bottom: 24px;
+    max-width: 640px;
+  }
+
+  .section-heading em {
+    font-style: italic;
+    /* === EDIT: section heading accent color === */
+    color: #c8600a;
+  }
+
+  .section-body {
+    font-size: 16px;
+    line-height: 1.85;
+    color: #3a3a3a;
+    max-width: 640px;
+  }
+
+  .section-body p {
+    margin-bottom: 18px;
+  }
+
+  /* ============================================================
+     PULL QUOTES
+     ============================================================ */
+  .pull-quote {
+    margin: 40px 0;
+    padding: 28px 32px;
+
+    /* === EDIT: pull quote left border color === */
+    border-left: 3px solid #c8f55a;
+
+    background: #1a1a1a;
+    color: #f5f1ea;
+    font-family: 'Playfair Display', serif;
+
+    /* === EDIT: pull quote font size === */
+    font-size: 22px;
+
+    font-style: italic;
+    line-height: 1.55;
+    border-radius: 0 10px 10px 0;
+    max-width: 640px;
+  }
+
+  .pull-quote cite {
+    display: block;
+    font-size: 11px;
+    font-style: normal;
+    color: #888;
+    margin-top: 12px;
+    font-family: 'Instrument Sans', sans-serif;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  /* ============================================================
+     DATA HIGHLIGHT
+     ============================================================ */
+  .data-highlight {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 32px 0;
+  }
+
+  .data-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1;
+  }
+
+  .data-desc {
+    font-size: 14px;
+    color: #666;
+    max-width: 240px;
+    line-height: 1.5;
+  }
+
+  /* ============================================================
+     RISK CARDS
+     ============================================================ */
+  .risk-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+    max-width: 680px;
+  }
+
+  .risk-card {
+    border: 0.5px solid #d5d0c8;
+    border-radius: 12px;
+    padding: 20px;
+    background: #fff;
+  }
+
+  .risk-icon-bar {
+    height: 3px;
+    border-radius: 3px;
+    margin-bottom: 14px;
+  }
+
+  /* === EDIT: risk card title size === */
+  .risk-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #1a1a1a;
+  }
+
+  .risk-body {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* ============================================================
+     GAP METER (animated bars)
+     === EDIT: labels and data-target percentages ===
+     ============================================================ */
+  .gap-meter {
+    margin: 36px 0;
+    max-width: 600px;
+  }
+
+  .gap-row {
+    margin-bottom: 22px;
+  }
+
+  .gap-label-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  .gap-label {
+    color: #666;
+    font-weight: 500;
+  }
+
+  .gap-pct {
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  .gap-track {
+    height: 9px;
+    background: #e8e3d8;
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .gap-fill {
+    height: 100%;
+    border-radius: 100px;
+    width: 0%;
+    transition: width 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* === EDIT: bar colors === */
+  .gap-fill.ai-fill     { background: #c8f55a; }
+  .gap-fill.public-fill { background: #ff9f6a; }
+  .gap-fill.policy-fill { background: #7acdff; }
+
+  .gap-footnote {
+    font-size: 11px;
+    color: #aaa;
+    font-style: italic;
+    margin-top: 8px;
+  }
+
+  /* ============================================================
+     CTA / CLOSING SECTION
+     ============================================================ */
+  .cta-section {
+    background: #1a1a1a;
+    padding: 80px 60px;
+    color: #f5f1ea;
+  }
+
+  .cta-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-section .section-number {
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .cta-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 46px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .cta-heading em {
+    font-style: italic;
+    color: #c8f55a;
+  }
+
+  .cta-body {
+    font-size: 15px;
+    color: #888;
+    max-width: 560px;
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+
+  /* === EDIT: tag labels and colors === */
+  .cta-tag {
+    display: inline-block;
+    background: #c8f55a;
+    color: #0a0a0a;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 7px 16px;
+    border-radius: 100px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-right: 8px;
+    margin-bottom: 10px;
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  .footer-bar {
+    background: #111;
+    padding: 24px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: #666;
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 680px) {
+    .hero { padding: 48px 28px; }
+    .hero-headline { font-size: 42px; }
+    .section { padding: 56px 28px; }
+    .section-heading { font-size: 32px; }
+    .risk-cards { grid-template-columns: 1fr; }
+    .cta-section { padding: 56px 28px; }
+    .footer-bar { padding: 20px 28px; flex-direction: column; gap: 12px; }
+  }
+
+  @media print {
+    .hero { min-height: auto; padding: 48px; }
+    .section { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO
+     === EDIT: kicker, headline, byline ===
+     ============================================================ -->
+<div class="hero">
+  <div class="hero-bg-text">SAFE?</div>
+
+  <div class="hero-kicker">International AI Safety Report 2026 · A Visual Story</div>
+
+  <h1 class="hero-headline">
+    30 countries signed a report.<br>
+    Are we actually <em>safer?</em>
+  </h1>
+
+  <div class="hero-byline">
+    Source data: IASR 2026 · 100+ experts · Backed by the EU, OECD & UN · DUX / Bio-Resilience UX
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span class="scroll-arrow">↓</span> Scroll to read
+  </div>
+</div>
+
+
+<!-- ============================================================
+     SECTION 01 — The moment
+     === EDIT: section-number, heading, body paragraphs, pull quote ===
+     ============================================================ -->
+<div class="section" data-section>
+  <div class="section-number">01 · The moment</div>
+  <h2 class="section-heading">Something big happened.<br>Most people <em>missed it.</em></h2>
+  <div class="section-body">
+    <p>On February 3rd, 2026, a document landed quietly on the internet. No headlines. No trending hashtags. Just a 200-page report that took over 100 scientists from 30 countries two years to write.</p>
+    <p>It answered three questions: What can AI actually do today? What could go wrong? And what — if anything — are we doing about it?</p>
+    <p>The answers are more honest than you'd expect from an official document. Which is exactly why they matter.</p>
+  </div>
+
+  <div class="pull-quote">
+    "AI systems can now pass professional licensing examinations in medicine and law — and answer over 80% of graduate-level science questions correctly."
+    <cite>International AI Safety Report 2026</cite>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     SECTION 02 — The capability leap
+     === EDIT: heading, body paragraphs, data highlight ===
+     ============================================================ -->
+<div class="section" data-section>
+  <div class="section-number">02 · The capability leap</div>
+  <h2 class="section-heading">It's not just <em>smart.</em><br>It's doctor-smart.</h2>
+  <div class="section-body">
+    <p>We're used to thinking of AI as autocomplete on steroids. But something shifted between 2023 and 2025. The gap between what AI can do and what a trained human expert can do collapsed — fast.</p>
+    <p>Think about what it takes to pass a medical licensing exam. Years of study. Supervised practice. The ability to reason through ambiguous cases. AI now does this. Not perfectly. But routinely.</p>
+  </div>
+
+  <!-- === EDIT: data number and description === -->
+  <div class="data-highlight">
+    <span class="data-num">80%</span>
+    <span class="data-desc">of graduate-level science questions answered correctly by frontier models as of Nov 2025</span>
+  </div>
+
+  <div class="section-body">
+    <p>The report is careful not to call this "intelligence." But it's careful in a way that feels like scientists trying not to alarm you. The capability is real. And it's accelerating.</p>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     SECTION 03 — The risks
+     === EDIT: risk card titles, body text, and bar colors above ===
+     ============================================================ -->
+<div class="section" data-section>
+  <div class="section-number">03 · The risks</div>
+  <h2 class="section-heading">Three things that <em>keep scientists up</em> at night.</h2>
+  <div class="section-body">
+    <p>The report identifies emerging risks with documented evidence. These aren't science fiction. They're patterns already appearing in the real world.</p>
+  </div>
+
+  <div class="risk-cards">
+    <!-- === EDIT: risk card 1 — color bar, title, body === -->
+    <div class="risk-card">
+      <div class="risk-icon-bar" style="background:#ff9f6a;"></div>
+      <div class="risk-title">Cyber threats</div>
+      <div class="risk-body">AI is now scaling the preparation stages of cyberattacks — helping attackers move faster and hit harder.</div>
+    </div>
+
+    <!-- === EDIT: risk card 2 === -->
+    <div class="risk-card">
+      <div class="risk-icon-bar" style="background:#c084fc;"></div>
+      <div class="risk-title">Bio & chemical</div>
+      <div class="risk-body">AI can produce lab instructions and troubleshoot dangerous experiments, lowering the barrier for bad actors.</div>
+    </div>
+
+    <!-- === EDIT: risk card 3 === -->
+    <div class="risk-card">
+      <div class="risk-icon-bar" style="background:#7acdff;"></div>
+      <div class="risk-title">Loss of control</div>
+      <div class="risk-body">Scenarios where AI systems pursue goals humans didn't intend — and humans can no longer correct them.</div>
+    </div>
+  </div>
+
+  <div class="section-body" style="margin-top:28px;">
+    <p>The hardest part? Every one of these risks has a dual-use problem. The same AI that helps a security researcher find vulnerabilities can help an attacker exploit them.</p>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     SECTION 04 — The safety gap
+     === EDIT: bar labels, data-target values (0–100), footnote ===
+     ============================================================ -->
+<div class="section" data-section id="gapSection">
+  <div class="section-number">04 · The safety gap</div>
+  <h2 class="section-heading">The gap between <em>knowing</em> and <em>acting.</em></h2>
+  <div class="section-body">
+    <p>Here's the uncomfortable truth buried inside 200 pages of careful science. The world knows AI is advancing fast. Governments are funding safety research. New laws are being written. But the gap between what's possible and what's protected is still enormous.</p>
+  </div>
+
+  <div class="gap-meter" id="gapMeter">
+
+    <!-- === EDIT: label and data-target (0–100) for each bar === -->
+    <div class="gap-row">
+      <div class="gap-label-row">
+        <span class="gap-label">AI capability growth</span>
+        <span class="gap-pct">94%</span>
+      </div>
+      <div class="gap-track">
+        <div class="gap-fill ai-fill" data-target="94"></div>
+      </div>
+    </div>
+
+    <div class="gap-row">
+      <div class="gap-label-row">
+        <span class="gap-label">Public awareness</span>
+        <span class="gap-pct">31%</span>
+      </div>
+      <div class="gap-track">
+        <div class="gap-fill public-fill" data-target="31"></div>
+      </div>
+    </div>
+
+    <div class="gap-row">
+      <div class="gap-label-row">
+        <span class="gap-label">Proven safety measures</span>
+        <span class="gap-pct">27%</span>
+      </div>
+      <div class="gap-track">
+        <div class="gap-fill policy-fill" data-target="27"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- === EDIT: footnote text === -->
+  <p class="gap-footnote">* Illustrative representation of the report's qualitative findings — not official percentages.</p>
+</div>
+
+
+<!-- ============================================================
+     SECTION 05 — What design has to do with it
+     === EDIT: heading, body paragraphs, pull quote ===
+     ============================================================ -->
+<div class="section" data-section>
+  <div class="section-number">05 · What design has to do with it</div>
+  <h2 class="section-heading">Safety isn't a <em>technical problem.</em><br>It's a design problem.</h2>
+  <div class="section-body">
+    <p>The report calls for broader societal resilience — incident response protocols, media literacy programs, and better ways for people to understand and act on risk.</p>
+    <p>That's a design brief. Every system that keeps people informed, every interface that makes risk legible, every experience that helps someone make a safer decision — that's design doing the work that policy alone can't.</p>
+    <p>This is the gap that Bio-Resilience UX was built to close. Translating what the scientists know into something the rest of the world can see, feel, and act on.</p>
+  </div>
+
+  <div class="pull-quote" style="border-left-color:#7acdff;">
+    "Resilience efforts span multiple sectors — including incident response protocols and media literacy programs. Large evidence gaps remain regarding their effectiveness."
+    <cite>IASR 2026 · Risk Management Section</cite>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     CTA SECTION
+     === EDIT: heading, body, tags ===
+     ============================================================ -->
+<div class="cta-section">
+  <div class="cta-inner">
+    <div class="section-number">Bio-Resilience UX · DUX Portfolio</div>
+
+    <h2 class="cta-heading">Design is how <em>safety</em> becomes real.</h2>
+
+    <p class="cta-body">The International AI Safety Report 2026 was written by 100 of the world's best scientific minds. It deserves to be seen, understood, and acted on — not just filed away. This visual story is one attempt to close that gap.</p>
+
+    <!-- === EDIT: portfolio tags — add or remove spans === -->
+    <div>
+      <span class="cta-tag">Bio-Resilience UX</span>
+      <span class="cta-tag">AI Safety</span>
+      <span class="cta-tag">Human-Centered Design</span>
+      <span class="cta-tag">IASR 2026</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     FOOTER
+     === EDIT: source line and brand name ===
+     ============================================================ -->
+<div class="footer-bar">
+  <span>Source: internationalaisafetyreport.org · Data: IASR 2026</span>
+  <span class="footer-brand">Bio-Resilience UX by DUX</span>
+</div>
+
+
+<!-- ============================================================
+     SCROLL ANIMATION SCRIPT
+     No need to edit this unless you want to change the trigger
+     threshold (currently 12% of element visible = animate in)
+     ============================================================ -->
+<script>
+  const sections = document.querySelectorAll('[data-section]');
+  const gapMeter = document.getElementById('gapMeter');
+  let barsAnimated = false;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+
+        if (entry.target.id === 'gapSection' && !barsAnimated) {
+          barsAnimated = true;
+          setTimeout(() => {
+            document.querySelectorAll('.gap-fill').forEach(bar => {
+              bar.style.width = bar.dataset.target + '%';
+            });
+          }, 350);
+        }
+      }
+    });
+  }, { threshold: 0.12 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
